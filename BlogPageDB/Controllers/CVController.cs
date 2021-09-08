@@ -25,7 +25,9 @@ namespace BlogPageDB.Controllers
             using (var context = new MyContext())
 
             {
-                CVlist = context.CV.FromSqlRaw("select * from CV").ToList();
+                //CVlist = context.CV.FromSqlRaw("select * from CV").ToList();
+                CVlist = context.CV.ToList();
+                
 
             }
             return View(CVlist);
@@ -33,20 +35,32 @@ namespace BlogPageDB.Controllers
 
         public IActionResult Delete(int Id)
         {
-            using(var context = new MyContext())
+            using (var context = new MyContext())
             {
-                var sql = $@"delete from CV where Id ={Id}" ;
-                context.Database.ExecuteSqlRaw(sql);
+                //var sql = $@"delete from CV where Id ={Id}";
+                //context.Database.ExecuteSqlRaw(sql);
+                var result = context.CV.Find(Id);
+                context.Remove(result);
+                context.SaveChanges();
             }
             return RedirectToAction("index");
         }
         [HttpPost]
-        public IActionResult Save (string Description, string Summary , int UserId )
+        public IActionResult Save(string Description, string Summary, int UserId)
         {
             using (var context = new MyContext())
             {
-                var sql = $@"insert into CV(Description,Summary,UserId) values ('{Description}','{Summary}',{UserId})";
-                context.Database.ExecuteSqlRaw(sql);
+                //var sql = $@"insert into CV(Description,Summary,UserId) values ('{Description}','{Summary}',{UserId})";
+                //context.Database.ExecuteSqlRaw(sql);
+                var CVinstance = new CV()
+                {
+                    Description = Description,
+                    Summary = Summary,
+                    UserId = UserId,
+                };
+                var result = context.CV.Add(CVinstance);
+                context.SaveChanges();
+
             }
             return RedirectToAction("index");
         }
@@ -59,10 +73,13 @@ namespace BlogPageDB.Controllers
         [HttpPost]
         public IActionResult Update(CV cv)
         {
-            using(var context = new MyContext())
+            using (var context = new MyContext())
             {
-                var sql = $@"update CV set Description = '{cv.Description}', Summary = '{cv.Summary}' where Id = '{cv.Id}' " ;
-                var resultCount = context.Database.ExecuteSqlRaw(sql); 
+                //var sql = $@"update CV set Description = '{cv.Description}', Summary = '{cv.Summary}' where Id = '{cv.Id}' " ;
+                //var resultCount = context.Database.ExecuteSqlRaw(sql); 
+                var result = context.CV.Update(cv);
+                context.SaveChanges();
+
             }
             return RedirectToAction("index");
         }

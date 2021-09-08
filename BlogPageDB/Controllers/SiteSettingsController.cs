@@ -31,6 +31,7 @@ namespace BlogPageDB.Controllers
             return RedirectToAction("index");
         }
         [HttpPost]
+
         public IActionResult Save(bool Maintenance, string Title,string Description,string Keywords,bool IsDarkMode, string Facebook, string Twitter, string Instagram, string Youtube)
         {
             using (var context = new MyContext())
