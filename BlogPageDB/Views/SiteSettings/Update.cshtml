@@ -1,0 +1,20 @@
+﻿@model SiteSettings
+
+@section css {
+
+}
+
+@section js{
+
+}
+
+
+<form action="/SiteSettings/Update" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    Facebook: <input type="text" name="Facebook" value="@Model.Facebook" />
+    Title: <input type="text" name="Title" value="@Model.Title" />
+    Description: <input type="text" name="Description" value="@Model.Description" />
+    Keywords: <input type="text" name="Keywords" value="@Model.Keywords" />
+    <button type="submit">Kaydet</button>
+    <button type="reset">Sıfırla</button>
+</form>

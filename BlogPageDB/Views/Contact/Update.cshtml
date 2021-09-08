@@ -1,0 +1,18 @@
+﻿@model Contact
+
+@section css {
+
+}
+
+@section js{
+
+}
+
+
+<form action="/Contact/Update" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    Address: <input type="text" name="Address" value="@Model.Address" />
+    PhoneNumber: <input type="text" name="PhoneNumber" value="@Model.PhoneNumber" />
+    <button type="submit">Kaydet</button>
+    <button type="reset">Sıfırla</button>
+</form>

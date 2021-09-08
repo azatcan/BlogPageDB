@@ -1,0 +1,18 @@
+﻿@model CV
+
+@section css {
+
+}
+
+@section js{
+
+}
+
+
+<form action="/CV/Update" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    Description: <input type="text" name="Description" value="@Model.Description" />
+    Summary: <input type="text" name="Summary" value="@Model.Summary" />
+    <button type="submit">Kaydet</button>
+    <button type="reset">Sıfırla</button>
+</form>

@@ -1,0 +1,18 @@
+﻿@model Users
+
+@section css {
+
+}
+
+@section js{
+
+}
+
+
+<form action="/home/Update" method="post">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    Adı: <input type="text" name="Name" value="@Model.Name" />
+
+    <button type="submit">Kaydet</button>
+    <button type="reset">Sıfırla</button>
+</form>
